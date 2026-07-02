@@ -5,10 +5,12 @@ import CatalogGrid from './components/CatalogGrid';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import PdfViewerModal from './components/PdfViewerModal';
+import TermsModal from './components/TermsModal';
 
 const App = () => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentCatalogTitle, setCurrentCatalogTitle] = useState('');
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   const handleOpenViewer = (title) => {
     setCurrentCatalogTitle(title);
@@ -42,12 +44,17 @@ const App = () => {
         <ContactSection />
       </main>
 
-      <Footer />
+      <Footer onOpenTerms={() => setIsTermsOpen(true)} />
 
       <PdfViewerModal 
         isOpen={isViewerOpen} 
         title={currentCatalogTitle} 
         onClose={handleCloseViewer} 
+      />
+
+      <TermsModal 
+        isOpen={isTermsOpen} 
+        onClose={() => setIsTermsOpen(false)} 
       />
     </>
   );
