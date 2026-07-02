@@ -27,7 +27,7 @@ const App = () => {
       {/* WhatsApp Floating Action Button */}
       <a 
         className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center" 
-        href="https://wa.me/573000000000" 
+        href="https://wa.me/59175026806" 
         target="_blank"
         rel="noreferrer"
       >

@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <nav className="bg-surface sticky top-0 z-40 transition-all duration-300 border-b border-surface-variant/30">
       <div className="flex justify-between items-center px-6 md:px-margin-desktop py-4 md:py-stack-md w-full max-w-container-max mx-auto relative">
-        <div className="flex items-center h-16 md:h-12 z-50">
+        <div className="flex items-center h-16 md:h-16 z-50">
           <img src={logo} alt="Regale Lencería" className="h-full object-contain" />
         </div>
         
@@ -50,7 +50,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-12 relative">
           <a 
             ref={el => tabsRef.current[0] = el}
-            className={`pb-1 font-label-caps text-label-caps tracking-widest transition-colors duration-300 ${activeTab === 'catalogos' ? 'text-primary' : 'text-secondary hover:text-primary'}`} 
+            className={`pb-1 font-label-caps text-sm tracking-widest transition-colors duration-300 ${activeTab === 'catalogos' ? 'text-primary font-bold' : 'text-secondary hover:text-primary'}`} 
             href="#"
             onClick={() => setActiveTab('catalogos')}
           >
@@ -58,7 +58,7 @@ const Navbar = () => {
           </a>
           <a 
             ref={el => tabsRef.current[1] = el}
-            className={`pb-1 font-label-caps text-label-caps tracking-widest transition-colors duration-300 ${activeTab === 'contacto' ? 'text-primary' : 'text-secondary hover:text-primary'}`} 
+            className={`pb-1 font-label-caps text-sm tracking-widest transition-colors duration-300 ${activeTab === 'contacto' ? 'text-primary font-bold' : 'text-secondary hover:text-primary'}`} 
             href="#contact-section"
             onClick={() => setActiveTab('contacto')}
           >
