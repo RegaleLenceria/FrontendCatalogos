@@ -157,10 +157,7 @@ const PdfViewerModal = ({ isOpen, title, onClose }) => {
           </button>
         </div>
 
-        {/* Footer Tip */}
-        <div className="px-10 py-4 bg-surface-bright text-center border-t border-surface-variant">
-          <p className="font-label-caps text-[10px] text-secondary tracking-[0.2em] opacity-60 uppercase">Doble clic para zoom • Usa flechas para navegar</p>
-        </div>
+
       </div>
     </div>
   );

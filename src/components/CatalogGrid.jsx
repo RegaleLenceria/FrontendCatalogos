@@ -4,24 +4,54 @@ import CatalogCard from './CatalogCard';
 const catalogs = [
   {
     title: 'Leo Hombre',
-    description: 'Boxers, Deportiva, Pijamas, Shorts',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuABDei1dSwuLDn7OFTPtQkDboedQW5yfys1Mwpoqreu0K7z5WuMBT8kU4gvRJK0oHjIO-LERpX0GSYBEIj6J8gSG1CSMqlTf4nWgUcjKeT-FQU4GjZRcnf_g9MocAwATmn5Yhah6GIwV25o83RANXp6XuiZ3GNAEggfRqsh0qBtyuc2lcYbmVvbRdUcmIp7duSisvlicr1RfTnMEGnw4oF9meerMpjk18tXKe6M_LfLCd7SRMKsLquV',
+    description: 'Boxers, deportiva, pijamas y shorts',
+    image: 'https://images.unsplash.com/photo-1552010099-5dc86fcfaa38?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Leonisa Brasier',
-    description: 'Innovación & Soporte',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLXbANGcLwoYmgWjoMDa4zqE0ubFkwVLslqVqD-tz2rYqoniErznmWE_QqbFpFU-Wd-a3IT94wJU-w8WaxoXIFHFRqOl-JiOFx_xI2qK6D6OQOsOYK3nLJixgsa-ClUkNy7-aHdrXFGHnlqKq1yWf9bRX0Hx1UdrTdSy1c7khvmCo6CneLqbgT9dETZj6dAaQO9h9KHPUxkdoHrzljK17keAqAYZAATyfWRS4ojACX-XyK0zelGviW',
+    description: 'Colección de brasieres',
+    image: 'https://images.unsplash.com/photo-1606903258673-99c62391ea28?auto=format&fit=crop&w=800&q=80',
   },
   {
     title: 'Chamela',
-    description: 'Deportiva, Trajes de Baño, Interior',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDk6F2o0S4NNUqAUTRcgzP-Z7D6tUHrV4rhzkItuwKi-pbEdaL-nnm1wVzUVP9MkQ3Kykavzz3DACR_qKDeVbK3vJzpiqT1zZqHMY1GWwroVk_gzKgvQDzm0S34HaKm1Nweomt3QjqQBPaGBb8eDQXKbUG4RHlpkL65WR__qkzk1lDDZGYU18KsH0rrUkop-v7Xkmpetp91wdc7cI9UbNNRiL4LobXq7eC-wMP3AK2wErjsI2fR1Lwh',
+    description: 'Deportiva, trajes de baño e interior',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Deportiva Leonisa',
+    description: 'Ropa deportiva para mujer',
+    image: 'https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Fajas Leonisa',
+    description: 'Control y modelación',
+    image: 'https://images.unsplash.com/photo-1508216124765-1d0c5a176884?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Fájate',
+    description: 'Fajas post-operación hombre y mujer',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Leonisa Kids',
+    description: 'Ropa interior para niñas y niños',
+    image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Panty Leonisa',
+    description: 'Ropa interior para mujer',
+    image: 'https://images.unsplash.com/photo-1610488669460-7a0e28f73fbc?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Touché',
+    description: 'Pareos, vestidos y trajes de baño',
+    image: 'https://images.unsplash.com/photo-1542289659-1946393bcf85?auto=format&fit=crop&w=800&q=80',
   }
 ];
 
 const CatalogGrid = ({ onOpenViewer }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-gutter">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-12 md:gap-y-24 gap-x-4 md:gap-x-gutter">
       {catalogs.map((catalog, index) => (
         <CatalogCard 
           key={index} 
