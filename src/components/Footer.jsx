@@ -5,7 +5,7 @@ const Footer = ({ onOpenTerms }) => {
   return (
     <footer className="bg-surface-container-low mt-section-gap border-t border-surface-variant/20">
       <div className="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 w-full max-w-container-max mx-auto">
-        <div className="font-headline-sm text-headline-sm text-primary mb-8 md:mb-0 flex items-center h-12">
+        <div className="font-headline-sm text-headline-sm text-primary mb-8 md:mb-0 flex items-center h-20">
           <img src={logo} alt="Regale Lencería" className="h-full object-contain" />
         </div>
         <div className="flex gap-12 mb-8 md:mb-0">
