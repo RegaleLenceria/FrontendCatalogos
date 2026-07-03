@@ -9,17 +9,17 @@ import TermsModal from './components/TermsModal';
 
 const App = () => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [currentCatalogTitle, setCurrentCatalogTitle] = useState('');
+  const [currentCatalog, setCurrentCatalog] = useState(null);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
-  const handleOpenViewer = (title) => {
-    setCurrentCatalogTitle(title);
+  const handleOpenViewer = (catalog) => {
+    setCurrentCatalog(catalog);
     setIsViewerOpen(true);
   };
 
   const handleCloseViewer = () => {
     setIsViewerOpen(false);
-    setCurrentCatalogTitle('');
+    setCurrentCatalog(null);
   };
 
   return (
@@ -48,7 +48,7 @@ const App = () => {
 
       <PdfViewerModal 
         isOpen={isViewerOpen} 
-        title={currentCatalogTitle} 
+        catalog={currentCatalog} 
         onClose={handleCloseViewer} 
       />
 

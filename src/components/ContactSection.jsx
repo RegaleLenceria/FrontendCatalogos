@@ -1,6 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ContactSection = () => {
+  const [contactInfo, setContactInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/contact-info`);
+        if (!response.ok) throw new Error('Error al cargar info de contacto');
+        const data = await response.json();
+        setContactInfo(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchContactInfo();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-12">Cargando contacto...</div>;
+  }
+
+  // Si no hay datos, mostramos algo por defecto (o nada)
+  if (!contactInfo) return null;
+
   return (
     <section className="mt-section-gap fade-in" id="contact-section">
       <div className="text-center mb-16">
@@ -25,14 +51,14 @@ const ContactSection = () => {
               <h4 className="font-label-caps text-primary tracking-widest mb-4">ESTAMOS AQUÍ</h4>
               <div className="flex items-start gap-4 text-secondary">
                 <span className="material-symbols-outlined text-primary">location_on</span>
-                <p className="font-body-md">Segundo Anillo & Fidel Oliva<br/>Santa Cruz de la Sierra</p>
+                <p className="font-body-md">{contactInfo.address?.split(',').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}</p>
               </div>
             </div>
             <div>
               <h4 className="font-label-caps text-primary tracking-widest mb-4">LLÁMANOS</h4>
               <div className="flex items-center gap-4 text-secondary">
                 <span className="material-symbols-outlined text-primary">call</span>
-                <a href="tel:+59175026806" className="font-body-md text-lg font-semibold hover:text-primary transition-colors">+591 75026806</a>
+                <a href={`tel:${contactInfo.phone?.replace(/ /g, '')}`} className="font-body-md text-lg font-semibold hover:text-primary transition-colors">{contactInfo.phone}</a>
               </div>
             </div>
             <div className="pt-4">
@@ -40,38 +66,22 @@ const ContactSection = () => {
                 <div>
                   <h4 className="font-label-caps text-primary tracking-widest mb-4">HORARIOS DE ATENCIÓN</h4>
                   <ul className="space-y-2 font-body-md text-secondary">
-                    <li className="flex justify-between border-b border-outline-variant/20 pb-2"><span>Lunes a Viernes:</span> <span  className="text-right">10:00 - 18:30<br/><span className="text-xs opacity-70 font-label-caps tracking-widest">(horario continuo)</span></span></li>
-                    <li className="flex justify-between border-b border-outline-variant/20 pb-2"><span>Sábados:</span> <span className="text-right">9:00 - 13:00<br/><span className="text-xs opacity-70 font-label-caps tracking-widest">(horario continuo)</span></span></li>
-                    <li className="flex justify-between text-primary/60 pt-1"><span>Domingo:</span> <span>Cerrado</span></li>
+                    <li className="flex justify-between border-b border-outline-variant/20 pb-2"><span>Lunes a Viernes:</span> <span  className="text-right">{contactInfo.schedule_weekdays?.split('(')[0]}<br/><span className="text-xs opacity-70 font-label-caps tracking-widest">({contactInfo.schedule_weekdays?.split('(')[1] || ''}</span></span></li>
+                    <li className="flex justify-between border-b border-outline-variant/20 pb-2"><span>Sábados:</span> <span className="text-right">{contactInfo.schedule_saturdays?.split('(')[0]}<br/><span className="text-xs opacity-70 font-label-caps tracking-widest">({contactInfo.schedule_saturdays?.split('(')[1] || ''}</span></span></li>
+                    <li className="flex justify-between text-primary/60 pt-1"><span>Domingo:</span> <span>{contactInfo.schedule_sundays}</span></li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-label-caps text-primary tracking-widest mb-4">NUESTRAS ASESORAS</h4>
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                    <div className="flex flex-col items-start justify-center p-4 bg-surface-bright rounded-2xl border border-outline-variant/30 hover:border-primary transition-colors group gap-3">
-                      <a className="font-body-md font-semibold text-primary hover:text-primary-container transition-colors" href="https://wa.me/59178555506?text=Hola%20Carla,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">Carla</a>
-                      <a className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-full font-button text-xs tracking-wider hover:scale-105 transition-transform w-full xl:w-auto" href="https://wa.me/59178555506?text=Hola%20Carla,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">
-                        <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
-                      </a>
-                    </div>
-                    <div className="flex flex-col items-start justify-center p-4 bg-surface-bright rounded-2xl border border-outline-variant/30 hover:border-primary transition-colors group gap-3">
-                      <a className="font-body-md font-semibold text-primary hover:text-primary-container transition-colors" href="https://wa.me/59169639272?text=Hola%20Andrea,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">Andrea</a>
-                      <a className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-full font-button text-xs tracking-wider hover:scale-105 transition-transform w-full xl:w-auto" href="https://wa.me/59169639272?text=Hola%20Andrea,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">
-                        <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
-                      </a>
-                    </div>
-                    <div className="flex flex-col items-start justify-center p-4 bg-surface-bright rounded-2xl border border-outline-variant/30 hover:border-primary transition-colors group gap-3">
-                      <a className="font-body-md font-semibold text-primary hover:text-primary-container transition-colors" href="https://wa.me/59176563151?text=Hola%20Maria%20Eugenia,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">Maria Eugenia</a>
-                      <a className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-full font-button text-xs tracking-wider hover:scale-105 transition-transform w-full xl:w-auto" href="https://wa.me/59176563151?text=Hola%20Maria%20Eugenia,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">
-                        <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
-                      </a>
-                    </div>
-                    <div className="flex flex-col items-start justify-center p-4 bg-surface-bright rounded-2xl border border-outline-variant/30 hover:border-primary transition-colors group gap-3">
-                      <a className="font-body-md font-semibold text-primary hover:text-primary-container transition-colors" href="https://wa.me/59175026806?text=Hola%20Jacquelin,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">Jacquelin</a>
-                      <a className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-full font-button text-xs tracking-wider hover:scale-105 transition-transform w-full xl:w-auto" href="https://wa.me/59175026806?text=Hola%20Jacquelin,%20vengo%20de%20los%20cat%C3%A1logos%20estoy%20interesada%20en.." target="_blank" rel="noreferrer">
-                        <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
-                      </a>
-                    </div>
+                    {contactInfo.advisors?.map((advisor, index) => (
+                      <div key={index} className="flex flex-col items-start justify-center p-4 bg-surface-bright rounded-2xl border border-outline-variant/30 hover:border-primary transition-colors group gap-3">
+                        <a className="font-body-md font-semibold text-primary hover:text-primary-container transition-colors" href={`https://wa.me/${advisor.phone}?text=${encodeURIComponent(advisor.message)}`} target="_blank" rel="noreferrer">{advisor.name}</a>
+                        <a className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-full font-button text-xs tracking-wider hover:scale-105 transition-transform w-full xl:w-auto" href={`https://wa.me/${advisor.phone}?text=${encodeURIComponent(advisor.message)}`} target="_blank" rel="noreferrer">
+                          <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
+                        </a>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
